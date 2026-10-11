@@ -1,0 +1,29 @@
+{
+  "name": "manabu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Japanisch lernen von N5 bis N1 – Vokabel-Wiederholung, Grammatik nach JLPT-Stufen, Lesetexte",
+  "scripts": {
+    "prepare:web": "node scripts/prepare-web.mjs",
+    "serve": "npm run prepare:web && npx --yes http-server www -p 8080 -c-1",
+    "android:init": "npm run prepare:web && (test -d android || npx cap add android) && npm run icons:android && node scripts/android-signing.mjs && npx cap sync android",
+    "ios:init": "npm run prepare:web && (test -d ios || npx cap add ios) && npm run icons:ios && npx cap sync ios",
+    "icons:android": "capacitor-assets generate --android --iconBackgroundColor '#27466F' --iconBackgroundColorDark '#27466F' --splashBackgroundColor '#ECEFEC' --splashBackgroundColorDark '#121617'",
+    "icons:ios": "capacitor-assets generate --ios --iconBackgroundColor '#27466F' --iconBackgroundColorDark '#27466F' --splashBackgroundColor '#ECEFEC' --splashBackgroundColorDark '#121617'"
+  },
+  "dependencies": {
+    "@capacitor-community/text-to-speech": "8.0.2",
+    "@capacitor/android": "8.5.2",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.2",
+    "@capacitor/filesystem": "8.1.4",
+    "@capacitor/ios": "8.5.2",
+    "@capacitor/share": "8.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "3.0.5",
+    "@capacitor/cli": "8.5.2",
+    "@fontsource/hanken-grotesk": "^5.3.0",
+    "@fontsource/klee-one": "^5.3.0"
+  }
+}
