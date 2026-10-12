@@ -14,7 +14,7 @@ const plain = s => s.replace(FURI, '$1'), kana = s => s.replace(FURI, '$2');
 const SUF = ['じゃなかったです', 'じゃありません', 'ですか', 'でした', 'ですね', 'のです', 'です', 'では', 'から', 'だ', 'は', 'が', 'を', 'に', 'へ', 'で', 'と', 'の', 'も', 'か', 'ね'].sort((a, b) => b.length - a.length);
 const miss = [], out = [];
 D.GRAMMAR.forEach((g, i) => {
-  const ex = [...(g.sec || []).flatMap(c => c.ex || []), ...(g.ex || []), ...g.q.filter(q => q.jp).map(q => [q.q])], list = [], seen = new Set();
+  const ex = [...(g.sec || []).flatMap(c => c.ex || []), ...(g.ex || []), ...g.q.filter(q => q.jp && !q.cz).map(q => [q.q])], list = [], seen = new Set();
   const push = y => { if (!seen.has(y[0])) { seen.add(y[0]); list.push(y); } };
   (EXTRA['#' + (i + 1)] || []).forEach(push);
   for (const e of ex) for (const ch of e[0].replace(/[。、？！「」]/g, ' ').trim().split(/\s+/)) {

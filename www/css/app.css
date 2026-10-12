@@ -3,7 +3,7 @@
   --sat:var(--safe-area-inset-top,env(safe-area-inset-top,0px)); --sab:var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px));
   --sal:var(--safe-area-inset-left,env(safe-area-inset-left,0px)); --sar:var(--safe-area-inset-right,env(safe-area-inset-right,0px));
   --tabh:58px;
-  --paper:#ECEFEC; --sheet:#FAFBF9; --sunk:#E3E8E5; --ink:#1C2224; --ink-2:#56615F; --ink-3:#86908E;
+  --paper:#ECEFEC; --sheet:#FAFBF9; --sunk:#E3E8E5; --ink:#1C2224; --ink-2:#56615F; --ink-3:#687270;
   --line:#D3DAD6; --grid:#D5DEEA;
   --ai:#27466F; --on-ai:#FFFFFF; --ai-soft:#DFE6F1;
   --good:#357049; --on-good:#FFFFFF; --good-soft:#DDEDE2;
@@ -15,7 +15,7 @@
   --r:10px;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --paper:#121617; --sheet:#1A1F20; --sunk:#232A2B; --ink:#E4EAE7; --ink-2:#A2ADAA; --ink-3:#76807E;
+  --paper:#121617; --sheet:#1A1F20; --sunk:#232A2B; --ink:#E4EAE7; --ink-2:#A2ADAA; --ink-3:#939D9B;
   --line:#2D3536; --grid:#25303A;
   --ai:#8DB0E2; --on-ai:#0D1724; --ai-soft:#1F2C40;
   --good:#6DBB85; --on-good:#0C1A11; --good-soft:#1C2F23;
@@ -23,7 +23,7 @@
   --learn:#E2AA4E; --learn-soft:#33281A; --new:#74A9EA; --mature:#9AD3AE;
   color-scheme:dark }}
 :root[data-theme="dark"]{
-  --paper:#121617; --sheet:#1A1F20; --sunk:#232A2B; --ink:#E4EAE7; --ink-2:#A2ADAA; --ink-3:#76807E;
+  --paper:#121617; --sheet:#1A1F20; --sunk:#232A2B; --ink:#E4EAE7; --ink-2:#A2ADAA; --ink-3:#939D9B;
   --line:#2D3536; --grid:#25303A;
   --ai:#8DB0E2; --on-ai:#0D1724; --ai-soft:#1F2C40;
   --good:#6DBB85; --on-good:#0C1A11; --good-soft:#1C2F23;
@@ -73,10 +73,11 @@ main{min-width:0;padding-block:34px 60px;padding-inline:40px}
   .topbar .tb.on{background:var(--ai-soft);border-color:var(--ai);color:var(--ink)}
   .tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--sheet);border-top:1px solid var(--line);padding:0 var(--sar) var(--sab) var(--sal)}
   .tabs button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:var(--tabh);border:0;background:none;cursor:pointer;color:var(--ink-3);font-size:11px;font-weight:600;padding:0}
-  .tabs button .k{font-family:var(--f-jpd);font-size:19px;white-space:nowrap;line-height:1.1;font-weight:600}
+  .tabs button .l{font-size:13px;font-weight:700;line-height:1.15;white-space:nowrap}
+  .tabs button .k{font-family:var(--f-jpd);font-size:11.5px;white-space:nowrap;line-height:1.1;font-weight:500;opacity:.85}
   .tabs button.on{color:var(--ai)}
   .tabs button.on::before{content:"";position:absolute;top:0;left:28%;right:28%;height:3px;border-radius:0 0 3px 3px;background:var(--ai)}
-  .tabs .badge{position:absolute;top:3px;left:calc(50% + 20px);font-size:10.5px;font-weight:700;font-variant-numeric:tabular-nums;background:var(--again);color:var(--on-again);border-radius:10px;padding:0 6px;line-height:17px}
+  .tabs .badge{position:absolute;top:auto;bottom:7px;left:calc(50% + 16px);font-size:10.5px;font-weight:700;font-variant-numeric:tabular-nums;background:var(--again);color:var(--on-again);border-radius:10px;padding:0 6px;line-height:17px}
   main{padding-block:20px calc(var(--tabh) + var(--sab) + 28px);padding-inline:calc(16px + var(--sal)) calc(16px + var(--sar))}
   h1{font-size:28px}
   .pagehead .hide-m{display:none}
@@ -373,7 +374,7 @@ input[type=range]{accent-color:var(--ai);width:180px;max-width:100%}
 .klist .j{font-weight:500;color:var(--ai)}
 
 /* ---------- Lesen: anklickbare Wörter und Wort-Fenster ---------- */
-.reader .w{cursor:pointer;border-radius:5px;padding:3px 1px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.reader .w{white-space:nowrap;cursor:pointer;border-radius:5px;padding:3px 1px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .reader .w.sel{background:var(--ai);color:var(--on-ai)}
 .reader .w.sel rt{color:var(--on-ai)}
 @media (hover:hover){.reader .w:hover:not(.sel){background:var(--ai-soft)}}
@@ -419,3 +420,25 @@ input[type=range]{accent-color:var(--ai);width:180px;max-width:100%}
   .stat span{font-size:12px;line-height:1.3}
   .set > :last-child{justify-self:start}
 }
+
+/* Kana-Lernpfad */
+.kbar{height:6px;border-radius:3px;background:var(--sunk);overflow:hidden}
+.kbar i{display:block;height:100%;background:var(--good);border-radius:3px;transition:width .3s}
+.kpath .knew .kcell{border-color:var(--ai)}
+.kpath .knew .kcell b{font-size:30px}
+
+/* Startseite: der eine nächste Schritt */
+.panel.step{border-color:var(--ai);background:var(--ai-soft)}
+.stephead{display:flex;gap:14px;align-items:flex-start}
+.stephead .k{font-family:var(--f-jpd);font-size:30px;line-height:1;color:var(--ai);flex:none;width:40px;text-align:center;padding-top:2px}
+.stephead h2{margin:0 0 4px}
+.stephead p{margin:0}
+.panel.step .kbar{background:var(--sheet)}
+
+/* Lange Lektionen in Schritten */
+.lsteps{display:flex;flex-direction:column;gap:6px}
+
+/* N5-Liste in Gruppen */
+.gpgroup{display:flex;justify-content:space-between;gap:12px;padding:18px 16px 8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border-top:1px solid var(--line)}
+.gpgroup:first-child{border-top:0}
+.kcell span{color:var(--ink-2)}
